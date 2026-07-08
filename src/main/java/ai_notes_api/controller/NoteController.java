@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/notes")
+@CrossOrigin(origins = "http://localhost:3000")
 public class NoteController {
 
     private final NoteService noteService;
@@ -28,9 +29,16 @@ public class NoteController {
         return ResponseEntity.ok(savedNote);
     }
 
+    // Belirli bir notu ID numarasına göre silen DELETE isteği
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNote(@PathVariable Long id) {
         noteService.deleteNote(id);
         return ResponseEntity.noContent().build();
+    }
+    // Belirli bir notu güncelleyen PUT isteği
+    @PutMapping("/{id}")
+    public ResponseEntity<Note> updateNote(@PathVariable Long id, @RequestBody Note noteDetails) {
+        Note updatedNote = noteService.updateNote(id, noteDetails);
+        return ResponseEntity.ok(updatedNote);
     }
 }
