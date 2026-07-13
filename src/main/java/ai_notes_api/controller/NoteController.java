@@ -35,6 +35,7 @@ public class NoteController {
         noteService.deleteNote(id);
         return ResponseEntity.noContent().build();
     }
+
     // Belirli bir notu güncelleyen PUT isteği
     @PutMapping("/{id}")
     public ResponseEntity<Note> updateNote(@PathVariable Long id, @RequestBody Note noteDetails) {
