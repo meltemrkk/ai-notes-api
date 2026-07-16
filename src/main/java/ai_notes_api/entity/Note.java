@@ -23,11 +23,31 @@ public class Note {
 
     private String title;
 
-    // Sınırı tamamen kalktı, artık PDF metni bile alabilir
     @Column(columnDefinition = "TEXT")
     private String content;
 
     // Özet kısmı da uzun olabilir - sınırsız suan
     @Column(columnDefinition = "TEXT")
     private String summary;
+
+    private String pdfName;
+
+    @jakarta.persistence.Lob
+    private byte[] pdfData;
+
+    public String getPdfName() {
+        return pdfName;
+    }
+
+    public void setPdfName(String pdfName) {
+        this.pdfName = pdfName;
+    }
+
+    public byte[] getPdfData() {
+        return pdfData;
+    }
+
+    public void setPdfData(byte[] pdfData) {
+        this.pdfData = pdfData;
+    }
 }
